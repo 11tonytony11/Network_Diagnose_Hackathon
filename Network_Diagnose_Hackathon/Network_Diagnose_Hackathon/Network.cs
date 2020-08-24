@@ -4,7 +4,7 @@ using System.Net;
 using System.Net.Sockets;
 using System.Net.NetworkInformation;
 
-namespace Net_Diagnose
+namespace Network_Diagnose_Hackathon
 {
     class Network
     {

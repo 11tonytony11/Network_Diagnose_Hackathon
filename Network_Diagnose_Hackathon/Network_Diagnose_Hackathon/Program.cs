@@ -6,8 +6,6 @@ namespace Network_Diagnose_Hackathon
     {
         static void Main(string[] args)
         {
-            Network handler = new Network();
-            Console.WriteLine(handler.Gateway_Check());
 
             Database db = new Database("db.sqlite");
             db.OpenDB();

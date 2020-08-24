@@ -210,4 +210,4 @@ speed-measure-plugin*.json
 
 **/*.csproj
 **/Properties
-*/App.config
+**/App.config

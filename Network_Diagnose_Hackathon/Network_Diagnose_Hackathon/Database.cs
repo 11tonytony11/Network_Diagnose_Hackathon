@@ -27,20 +27,24 @@ namespace Network_Diagnose_Hackathon
             this.file = path;
         }
 
-        private void OpenDB()
+        public void OpenDB()
         {
             this.m_dbConnection = new SQLiteConnection("Data Source=" + this.file + ";Version=3;");
             m_dbConnection.Open();
         }
 
-        private SQLiteDataReader ExecuteQuery(string query) 
-            // CREATE TABLE IF NOT EXISTS Diag ( name TEXT PRIMARY KEY, router_counter INTEGER, dns_counter INTEGER, trace_counter INTEGER )
+        public SQLiteDataReader ExecuteQuery(string query) 
+            // CREATE TABLE IF NOT EXISTS Diag ( name TEXT PRIMARY KEY, router_counter INTEGER, dns_counter INTEGER, trace_counter INTEGER, highest TEXT )
         {
             SQLiteCommand cmd = new SQLiteCommand(query, m_dbConnection);
             cmd.ExecuteNonQuery();
             SQLiteDataReader reader = cmd.ExecuteReader();
             return reader;
         }
-
+        
+        public void closeDB()
+        {
+            this.m_dbConnection.Close();
+        }
     }
 }

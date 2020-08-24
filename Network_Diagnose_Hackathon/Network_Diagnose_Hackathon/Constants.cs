@@ -7,5 +7,7 @@ namespace Network_Diagnose_Hackathon
         public const int MAX_TTL = 50;
         public const int TIMEOUT = 5000;
         public const int MAX_LATENCY = 100;
+        public const string SQL_TABLE_CREATE_QUERY = "CREATE TABLE IF NOT EXISTS Diag ( name TEXT PRIMARY KEY, router_counter INTEGER, dns_counter INTEGER, trace_counter INTEGER, highest TEXT )";
+        public const string SQL_TABLE_OPERATION_ONE = "SELECT router_counter, dns_counter, trace_counter, highest CROSS APPLY (SELECT top 1 counter highest FROM (VALUES('ROUTER_COUNTER', router_counter), ('DNS_COUNTER', dns_counter), ('TRACE_COUNTER', trace_counter)) x(counter, value) ORDER BY value desc) x";
     }
 }

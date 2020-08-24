@@ -21,9 +21,9 @@ namespace Network_Diagnose_Hackathon
             this.OpenDB();
         }
 
-        private void createDB(string path) // file type is .sqlite
+        private void createDB(string path) 
         {
-            SQLiteConnection.CreateFile(path);
+            SQLiteConnection.CreateFile(path); // file type is .sqlite
             this.file = path;
         }
 
@@ -33,7 +33,8 @@ namespace Network_Diagnose_Hackathon
             m_dbConnection.Open();
         }
 
-        private SQLiteDataReader ExecuteQuery(string query)
+        private SQLiteDataReader ExecuteQuery(string query) 
+            // CREATE TABLE IF NOT EXISTS Diag ( name TEXT PRIMARY KEY, router_counter INTEGER, dns_counter INTEGER, trace_counter INTEGER )
         {
             SQLiteCommand cmd = new SQLiteCommand(query, m_dbConnection);
             cmd.ExecuteNonQuery();

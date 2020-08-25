@@ -46,5 +46,10 @@ namespace Network_Diagnose_Hackathon
         {
             this.m_dbConnection.Close();
         }
+
+        public void InsertUser(string name)
+        {
+            this.ExecuteQuery(String.Format("INSERT INTO Diag (name, router_counter, dns_counter, trace_counter, highest) VALUES(); ", name, 0, 0, 0, "router_counter"));
+        }
     }
 }

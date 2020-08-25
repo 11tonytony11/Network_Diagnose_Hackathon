@@ -49,7 +49,12 @@ namespace Network_Diagnose_Hackathon
 
         public void InsertUser(string name)
         {
-            this.ExecuteQuery(String.Format("INSERT INTO Diag (name, router_counter, dns_counter, trace_counter, highest) VALUES(); ", name, 0, 0, 0, "router_counter"));
+            this.ExecuteQuery(String.Format("INSERT INTO Diag (name, router_counter, dns_counter, trace_counter, highest) VALUES({0}, {1}, {2}, {3}); ", name, 0, 0, 0, "router_counter"));
+        }
+
+        public void IncrementCounter(string name, string field)
+        {
+            this.ExecuteQuery(string.Format("UPDATE Diag SET {0} = {0} + 1... WHERE name = {1}; ", field, name));
         }
     }
 }

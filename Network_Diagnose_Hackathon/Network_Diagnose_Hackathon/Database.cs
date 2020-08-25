@@ -54,7 +54,34 @@ namespace Network_Diagnose_Hackathon
 
         public void IncrementCounter(string name, string field)
         {
-            this.ExecuteQuery(string.Format("UPDATE Diag SET {0} = {0} + 1... WHERE name = {1}; ", field, name));
+            int router = 0, dns = 0, trace = 0;
+            string highest = "";
+
+            this.ExecuteQuery(string.Format("UPDATE Diag SET {0} = {0} + 1 WHERE name = {1}; ", field, name));
+            SQLiteDataReader reader = this.ExecuteQuery("Select * From Diag");
+
+            while (reader.Read())
+            {
+                router = Int16.Parse(reader["router_counter"].ToString());
+                dns = Int16.Parse(reader["dns_counter"].ToString());
+                trace = Int16.Parse(reader["trace_counter"].ToString());
+            }
+
+            if ((router > dns) && (router > trace))
+            {
+                highest = "router_counter";
+            }
+            else if ((dns > router) && (dns > trace))
+            {
+                highest = "dns_counter";
+            }
+            else if ((trace > router) && (trace > dns))
+            {
+                highest = "trace_counter";
+            }
+
+            this.ExecuteQuery(string.Format("UPDATE Diag SET highest = {0} WHERE name = {1}; ", highest, name));
+
         }
     }
 }
